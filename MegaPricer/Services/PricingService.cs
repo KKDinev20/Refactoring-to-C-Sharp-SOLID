@@ -4,7 +4,13 @@ using MegaPricer.Data;
 using Microsoft.Data.Sqlite;
 
 namespace MegaPricer.Services;
-public class PricingService
+
+public interface IPricingService
+{
+  Result<PriceGroup> CalculatePrice(PriceRequest priceRequest);
+}
+
+public class PricingService : IPricingService
 {
   private readonly IOrderDataService _orderDataService;
 

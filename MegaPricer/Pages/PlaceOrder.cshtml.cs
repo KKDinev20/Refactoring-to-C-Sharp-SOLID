@@ -7,10 +7,12 @@ namespace MegaPricer.Pages;
 public class PlaceOrderModel : PageModel
 {
   private readonly ILogger<PlaceOrderModel> _logger;
+  private readonly IPricingService _pricingService;
 
-  public PlaceOrderModel(ILogger<PlaceOrderModel> logger)
+  public PlaceOrderModel(ILogger<PlaceOrderModel> logger, IPricingService pricingService)
   {
     _logger = logger;
+    _pricingService = pricingService;
   }
 
   public void OnGet()
@@ -40,6 +42,6 @@ public class PlaceOrderModel : PageModel
       refType = "Order"
     };
 
-    new PricingService(new SQLiteOrderDataService()).CalculatePrice(priceRequest);
+    _pricingService.CalculatePrice(priceRequest);
   }
 }

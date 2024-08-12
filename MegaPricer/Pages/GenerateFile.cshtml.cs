@@ -7,10 +7,12 @@ namespace MegaPricer.Pages;
 public class GenerateFileModel : PageModel
 {
   private readonly ILogger<GenerateFileModel> _logger;
+  private readonly IPricingService _pricingService;
 
-  public GenerateFileModel(ILogger<GenerateFileModel> logger)
+  public GenerateFileModel(ILogger<GenerateFileModel> logger, IPricingService pricingService)
   {
     _logger = logger;
+    _pricingService = pricingService;
   }
 
   public void OnGet()
@@ -39,6 +41,6 @@ public class GenerateFileModel : PageModel
       userName = userName,
       refType = "PriceReport"
     };
-    new PricingService(new SQLiteOrderDataService()).CalculatePrice(priceRequest);
+    _pricingService.CalculatePrice(priceRequest);
   }
 }

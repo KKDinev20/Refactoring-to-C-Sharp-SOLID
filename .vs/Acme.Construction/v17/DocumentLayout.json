@@ -3,31 +3,39 @@
   "WorkspaceRootPath": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\pages\\placeorder.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\pages\\placeorder.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\pages\\generatefile.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\pages\\generatefile.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\pages\\generatefile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\pages\\generatefile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\pages\\placeorder.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\pages\\placeorder.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\services\\pricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\services\\pricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KonstantinDinev\\AppData\\Local\\Temp\\a27bd613-41ee-421c-9752-305f35585966_refactoring-solid-c-sharp-code.zip.966\\03\\demos\\demos\\after\\MegaPricer\\Services\\PricingService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\services\\globalhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\services\\globalhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|c:\\users\\konstantindinev\\source\\repos\\refactoring-to-c-sharp-solid\\megapricer\\pages\\generatefile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{31B8486A-2128-495A-867B-DDDE889509C2}|MegaPricer\\MegaPricer.csproj|solutionrelative:megapricer\\pages\\generatefile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KonstantinDinev\\AppData\\Local\\Temp\\a27bd613-41ee-421c-9752-305f35585966_refactoring-solid-c-sharp-code.zip.966\\03\\demos\\demos\\after\\MegaPricer\\Services\\PricingService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,11 +45,93 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "MegaPricer\\Pages\\Index.cshtml",
+              "ToolTip": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\Index.cshtml",
+              "RelativeToolTip": "MegaPricer\\Pages\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-12T13:48:57.596Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Program.cs",
+              "RelativeDocumentMoniker": "MegaPricer\\Program.cs",
+              "ToolTip": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Program.cs",
+              "RelativeToolTip": "MegaPricer\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T13:41:34.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlaceOrder.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\PlaceOrder.cshtml.cs",
+              "RelativeDocumentMoniker": "MegaPricer\\Pages\\PlaceOrder.cshtml.cs",
+              "ToolTip": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\PlaceOrder.cshtml.cs",
+              "RelativeToolTip": "MegaPricer\\Pages\\PlaceOrder.cshtml.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAYwCwAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T10:58:15.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GlobalHelpers.cs",
+              "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Services\\GlobalHelpers.cs",
+              "RelativeDocumentMoniker": "MegaPricer\\Services\\GlobalHelpers.cs",
+              "ToolTip": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Services\\GlobalHelpers.cs",
+              "RelativeToolTip": "MegaPricer\\Services\\GlobalHelpers.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T10:51:19.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PricingService.cs",
+              "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Services\\PricingService.cs",
+              "RelativeDocumentMoniker": "MegaPricer\\Services\\PricingService.cs",
+              "ToolTip": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Services\\PricingService.cs",
+              "RelativeToolTip": "MegaPricer\\Services\\PricingService.cs",
+              "ViewState": "AQIAAJEBAAAAAAAAAAAmwJkBAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T09:03:05.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "GenerateFile.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\GenerateFile.cshtml.cs",
+              "RelativeDocumentMoniker": "MegaPricer\\Pages\\GenerateFile.cshtml.cs",
+              "ToolTip": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\GenerateFile.cshtml.cs",
+              "RelativeToolTip": "MegaPricer\\Pages\\GenerateFile.cshtml.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAYwAsAAABcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T10:21:58.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "MegaPricer\\Pages\\Index.cshtml.cs",
@@ -53,12 +143,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "GenerateFile.cshtml",
               "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\GenerateFile.cshtml",
               "RelativeDocumentMoniker": "MegaPricer\\Pages\\GenerateFile.cshtml",
@@ -71,58 +157,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PlaceOrder.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\PlaceOrder.cshtml.cs",
-              "RelativeDocumentMoniker": "MegaPricer\\Pages\\PlaceOrder.cshtml.cs",
-              "ToolTip": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\PlaceOrder.cshtml.cs",
-              "RelativeToolTip": "MegaPricer\\Pages\\PlaceOrder.cshtml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACoAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T10:58:15.851Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GenerateFile.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\GenerateFile.cshtml.cs",
-              "RelativeDocumentMoniker": "MegaPricer\\Pages\\GenerateFile.cshtml.cs",
-              "ToolTip": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Pages\\GenerateFile.cshtml.cs",
-              "RelativeToolTip": "MegaPricer\\Pages\\GenerateFile.cshtml.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAgwCkAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T10:21:58.047Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GlobalHelpers.cs",
-              "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Services\\GlobalHelpers.cs",
-              "RelativeDocumentMoniker": "MegaPricer\\Services\\GlobalHelpers.cs",
-              "ToolTip": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Services\\GlobalHelpers.cs",
-              "RelativeToolTip": "MegaPricer\\Services\\GlobalHelpers.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T10:51:19.236Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PricingService.cs",
-              "DocumentMoniker": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Services\\PricingService.cs",
-              "RelativeDocumentMoniker": "MegaPricer\\Services\\PricingService.cs",
-              "ToolTip": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\Services\\PricingService.cs",
-              "RelativeToolTip": "MegaPricer\\Services\\PricingService.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAwwJIAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T09:03:05.552Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "PricingService.cs",
               "DocumentMoniker": "C:\\Users\\KonstantinDinev\\AppData\\Local\\Temp\\a27bd613-41ee-421c-9752-305f35585966_refactoring-solid-c-sharp-code.zip.966\\03\\demos\\demos\\after\\MegaPricer\\Services\\PricingService.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\a27bd613-41ee-421c-9752-305f35585966_refactoring-solid-c-sharp-code.zip.966\\03\\demos\\demos\\after\\MegaPricer\\Services\\PricingService.cs",

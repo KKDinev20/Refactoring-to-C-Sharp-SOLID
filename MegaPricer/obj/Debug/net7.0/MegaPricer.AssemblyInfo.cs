@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MegaPricer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62e058697a84f54ff54f08caf6e6be20a8e2adfc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf03bcaa2866bb6c83681d6d7bd6f8d830d9365f")]
 [assembly: System.Reflection.AssemblyProductAttribute("MegaPricer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MegaPricer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
