@@ -6,7 +6,7 @@ namespace MegaPricer.Services;
 
 public class PricingService
 {
-  public static string CalculatePrice(int kitchenId, int wallOrderNum, string userName, string refType)
+  public string CalculatePrice(int kitchenId, int wallOrderNum, string userName, string refType)
   {
     if (Context.Session[userName]["PricingOff"] == "Y") return "0|0|0";
 
