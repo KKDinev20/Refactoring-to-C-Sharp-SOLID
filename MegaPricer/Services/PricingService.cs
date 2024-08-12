@@ -6,6 +6,13 @@ using Microsoft.Data.Sqlite;
 namespace MegaPricer.Services;
 public class PricingService
 {
+  private readonly IOrderDataService _orderDataService;
+
+  public PricingService(IOrderDataService orderDataService)
+  {
+    _orderDataService = orderDataService;
+  }
+
   public Result<PriceGroup> CalculatePrice(PriceRequest priceRequest)
   {
     if (Context.Session[priceRequest.userName]["PricingOff"] == "Y") return new PriceGroup(0, 0, 0);
@@ -65,7 +72,7 @@ public class PricingService
       {
         // create a new order
         order.KitchenId = priceRequest.kitchenId;
-        CreateNewOrder(order);
+        _orderDataService.CreateNewOrder(order);
       }
 
       defaultColor = Convert.ToInt32(dt.Rows[0]["CabinetColor"]);// dt.Rows[0].Field<int>("CabinetColor");
@@ -103,7 +110,7 @@ public class PricingService
         if (priceRequest.refType == "Order")
         {
           // add this part to the order
-          InsertOrderItemRecord(order, thisPart, thisUserMarkup, thisPart.MarkedUpCost);
+          _orderDataService.InsertOrderItemRecord(order, thisPart, thisUserMarkup, thisPart.MarkedUpCost);
         }
         else if (priceRequest.refType == "PriceReport")
         {
@@ -137,7 +144,7 @@ public class PricingService
 
             if (priceRequest.refType == "Order")
             {
-              AddOrderItem(order, thisUserMarkup, thisFeature);
+              _orderDataService.AddOrderItem(order, thisUserMarkup, thisFeature);
 
             }
             else if (priceRequest.refType == "PriceReport")
@@ -163,7 +170,6 @@ public class PricingService
 
           if (priceRequest.refType == "Order")
           {
-            AddWallTreatmentToOrder(order, thisPart, thisUserMarkup);
           }
           else if (priceRequest.refType == "PriceReport")
           {
@@ -188,24 +194,6 @@ public class PricingService
         sr.Close();
         sr.Dispose();
       }
-    }
-  }
-
-  private static void AddWallTreatmentToOrder(Order order, Part thisPart, decimal thisUserMarkup)
-  {
-    // add this part to the order
-    using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
-    {
-      var cmd = conn.CreateCommand();
-      cmd.CommandText = "INSERT INTO ORDERITEM (OrderId,SKU,Quantity,BasePrice,Markup,UserMarkup) VALUES (@orderId,@sku,@quantity,@basePrice,@markup,@userMarkup)";
-      cmd.Parameters.AddWithValue("@orderId", order.OrderId);
-      cmd.Parameters.AddWithValue("@sku", thisPart.SKU);
-      cmd.Parameters.AddWithValue("@quantity", thisPart.Quantity == 0 ? 1 : thisPart.Quantity);
-      cmd.Parameters.AddWithValue("@basePrice", GlobalHelpers.Format(thisPart.Cost));
-      cmd.Parameters.AddWithValue("@markup", GlobalHelpers.Format(thisPart.MarkedUpCost - thisPart.Cost));
-      cmd.Parameters.AddWithValue("@userMarkup", GlobalHelpers.Format(thisPart.MarkedUpCost * (1 + thisUserMarkup / 100) - thisPart.MarkedUpCost));
-      conn.Open();
-      cmd.ExecuteNonQuery();
     }
   }
 
@@ -235,24 +223,6 @@ public class PricingService
     }
 
     return width;
-  }
-
-  private static void AddOrderItem(Order order, decimal thisUserMarkup, Feature thisFeature)
-  {
-    // add this part to the order
-    using (var conn2 = new SqliteConnection(ConfigurationSettings.ConnectionString))
-    {
-      var cmd = conn2.CreateCommand();
-      cmd.CommandText = "INSERT INTO ORDERITEM (OrderId,SKU,Quantity,BasePrice,Markup,UserMarkup) VALUES (@orderId,@sku,@quantity,@basePrice,@markup,@userMarkup)";
-      cmd.Parameters.AddWithValue("@orderId", order.OrderId);
-      cmd.Parameters.AddWithValue("@sku", thisFeature.SKU);
-      cmd.Parameters.AddWithValue("@quantity", thisFeature.Quantity == 0 ? 1 : thisFeature.Quantity);
-      cmd.Parameters.AddWithValue("@basePrice", GlobalHelpers.Format(thisFeature.FlatCost));
-      cmd.Parameters.AddWithValue("@markup", GlobalHelpers.Format(thisFeature.MarkedUpCost - thisFeature.FlatCost));
-      cmd.Parameters.AddWithValue("@userMarkup", GlobalHelpers.Format(thisFeature.MarkedUpCost * (1 + thisUserMarkup / 100) - thisFeature.MarkedUpCost));
-      conn2.Open();
-      cmd.ExecuteNonQuery();
-    }
   }
 
   private static Feature LoadFeatureCostInfo(decimal thisUserMarkup, Feature thisFeature)
@@ -311,23 +281,6 @@ public class PricingService
     }
 
     return dt3;
-  }
-
-  private static void InsertOrderItemRecord(Order order, Part thisPart, decimal thisUserMarkup, decimal thisTotalPartCost)
-  {
-    using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
-    {
-      var cmd = conn.CreateCommand();
-      cmd.CommandText = "INSERT INTO ORDERITEM (OrderId,SKU,Quantity,BasePrice,Markup,UserMarkup) VALUES (@orderId,@sku,@quantity,@basePrice,@markup,@userMarkup)";
-      cmd.Parameters.AddWithValue("@orderId", order.OrderId);
-      cmd.Parameters.AddWithValue("@sku", thisPart.SKU);
-      cmd.Parameters.AddWithValue("@quantity", thisPart.Quantity == 0 ? 1 : thisPart.Quantity);
-      cmd.Parameters.AddWithValue("@basePrice", GlobalHelpers.Format(thisPart.Cost));
-      cmd.Parameters.AddWithValue("@markup", GlobalHelpers.Format(thisTotalPartCost - thisPart.Cost));
-      cmd.Parameters.AddWithValue("@userMarkup", GlobalHelpers.Format(thisTotalPartCost * (1 + thisUserMarkup / 100) - thisTotalPartCost));
-      conn.Open();
-      cmd.ExecuteNonQuery();
-    }
   }
 
   private static decimal GetUserMarkup(PriceRequest priceRequest, decimal thisUserMarkup)
@@ -412,25 +365,6 @@ public class PricingService
       }
     }
   }
-
-  private static void CreateNewOrder(Order order)
-  {
-    using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
-    {
-      var cmd = conn.CreateCommand();
-      cmd.CommandText = "INSERT INTO ORDERS (KitchenId,OrderDate,OrderStatus,OrderType) VALUES (@kitchenId,@orderDate,@orderStatus,@orderType)";
-      cmd.Parameters.AddWithValue("@kitchenId", order.KitchenId);
-      cmd.Parameters.AddWithValue("@orderDate", order.OrderDate);
-      cmd.Parameters.AddWithValue("@orderStatus", order.OrderStatus);
-      cmd.Parameters.AddWithValue("@orderType", order.OrderType);
-      conn.Open();
-      cmd.ExecuteNonQuery();
-      var cmd2 = conn.CreateCommand();
-      cmd2.CommandText = "SELECT last_insert_rowid();";
-      order.OrderId = Convert.ToInt32(cmd2.ExecuteScalar());
-    }
-  }
-
   private static DataTable PopulateWallsDataTable(PriceRequest priceRequest)
   {
     DataTable dt;
@@ -455,5 +389,86 @@ public class PricingService
     }
 
     return dt;
+  }
+}
+
+public interface IOrderDataService
+{
+  void CreateNewOrder(Order order);
+  void InsertOrderItemRecord(Order order, Part thisPart, decimal thisUserMarkup, decimal thisTotalPartCost);
+  void AddOrderItem(Order order, decimal thisUserMarkup, Feature thisFeature);
+  void AddWallTreatmentToOrder(Order order, Part thisPart, decimal thisUserMarkup);
+}
+
+
+public class SQLiteOrderDataService : IOrderDataService
+{
+  public void AddOrderItem(Order order, decimal thisUserMarkup, Feature thisFeature)
+  {
+    using (var conn2 = new SqliteConnection(ConfigurationSettings.ConnectionString))
+    {
+      var cmd = conn2.CreateCommand();
+      cmd.CommandText = "INSERT INTO ORDERITEM (OrderId,SKU,Quantity,BasePrice,Markup,UserMarkup) VALUES (@orderId,@sku,@quantity,@basePrice,@markup,@userMarkup)";
+      cmd.Parameters.AddWithValue("@orderId", order.OrderId);
+      cmd.Parameters.AddWithValue("@sku", thisFeature.SKU);
+      cmd.Parameters.AddWithValue("@quantity", thisFeature.Quantity == 0 ? 1 : thisFeature.Quantity);
+      cmd.Parameters.AddWithValue("@basePrice", GlobalHelpers.Format(thisFeature.FlatCost));
+      cmd.Parameters.AddWithValue("@markup", GlobalHelpers.Format(thisFeature.MarkedUpCost - thisFeature.FlatCost));
+      cmd.Parameters.AddWithValue("@userMarkup", GlobalHelpers.Format(thisFeature.MarkedUpCost * (1 + thisUserMarkup / 100) - thisFeature.MarkedUpCost));
+      conn2.Open();
+      cmd.ExecuteNonQuery();
+    }
+  }
+  public void AddWallTreatmentToOrder(Order order, Part thisPart, decimal thisUserMarkup)
+  {
+    using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
+    {
+      var cmd = conn.CreateCommand();
+      cmd.CommandText = "INSERT INTO ORDERITEM (OrderId,SKU,Quantity,BasePrice,Markup,UserMarkup) VALUES (@orderId,@sku,@quantity,@basePrice,@markup,@userMarkup)";
+      cmd.Parameters.AddWithValue("@orderId", order.OrderId);
+      cmd.Parameters.AddWithValue("@sku", thisPart.SKU);
+      cmd.Parameters.AddWithValue("@quantity", thisPart.Quantity == 0 ? 1 : thisPart.Quantity);
+      cmd.Parameters.AddWithValue("@basePrice", GlobalHelpers.Format(thisPart.Cost));
+      cmd.Parameters.AddWithValue("@markup", GlobalHelpers.Format(thisPart.MarkedUpCost - thisPart.Cost));
+      cmd.Parameters.AddWithValue("@userMarkup", GlobalHelpers.Format(thisPart.MarkedUpCost * (1 + thisUserMarkup / 100) - thisPart.MarkedUpCost));
+      conn.Open();
+      cmd.ExecuteNonQuery();
+    }
+  }
+
+  public void CreateNewOrder(Order order)
+  {
+    using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
+    {
+      var cmd = conn.CreateCommand();
+      cmd.CommandText = "INSERT INTO ORDERS (KitchenId,OrderDate,OrderStatus,OrderType) VALUES (@kitchenId,@orderDate,@orderStatus,@orderType)";
+      cmd.Parameters.AddWithValue("@kitchenId", order.KitchenId);
+      cmd.Parameters.AddWithValue("@orderDate", order.OrderDate);
+      cmd.Parameters.AddWithValue("@orderStatus", order.OrderStatus);
+      cmd.Parameters.AddWithValue("@orderType", order.OrderType);
+      conn.Open();
+      cmd.ExecuteNonQuery();
+      var cmd2 = conn.CreateCommand();
+      cmd2.CommandText = "SELECT last_insert_rowid();";
+      order.OrderId = Convert.ToInt32(cmd2.ExecuteScalar());
+    }
+  }
+
+
+  public void InsertOrderItemRecord(Order order, Part thisPart, decimal thisUserMarkup, decimal thisTotalPartCost)
+  {
+    using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
+    {
+      var cmd = conn.CreateCommand();
+      cmd.CommandText = "INSERT INTO ORDERITEM (OrderId,SKU,Quantity,BasePrice,Markup,UserMarkup) VALUES (@orderId,@sku,@quantity,@basePrice,@markup,@userMarkup)";
+      cmd.Parameters.AddWithValue("@orderId", order.OrderId);
+      cmd.Parameters.AddWithValue("@sku", thisPart.SKU);
+      cmd.Parameters.AddWithValue("@quantity", thisPart.Quantity == 0 ? 1 : thisPart.Quantity);
+      cmd.Parameters.AddWithValue("@basePrice", GlobalHelpers.Format(thisPart.Cost));
+      cmd.Parameters.AddWithValue("@markup", GlobalHelpers.Format(thisTotalPartCost - thisPart.Cost));
+      cmd.Parameters.AddWithValue("@userMarkup", GlobalHelpers.Format(thisTotalPartCost * (1 + thisUserMarkup / 100) - thisTotalPartCost));
+      conn.Open();
+      cmd.ExecuteNonQuery();
+    }
   }
 }

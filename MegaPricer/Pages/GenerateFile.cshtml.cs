@@ -39,6 +39,6 @@ public class GenerateFileModel : PageModel
       userName = userName,
       refType = "PriceReport"
     };
-    new PricingService().CalculatePrice(priceRequest);
+    new PricingService(new SQLiteOrderDataService()).CalculatePrice(priceRequest);
   }
 }

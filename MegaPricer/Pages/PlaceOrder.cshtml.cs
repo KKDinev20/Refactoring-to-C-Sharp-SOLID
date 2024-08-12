@@ -40,6 +40,6 @@ public class PlaceOrderModel : PageModel
       refType = "Order"
     };
 
-    new PricingService().CalculatePrice(priceRequest);
+    new PricingService(new SQLiteOrderDataService()).CalculatePrice(priceRequest);
   }
 }

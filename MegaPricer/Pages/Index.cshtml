@@ -4,7 +4,7 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    PricingService pricingService = new();
+    PricingService pricingService = new(new SQLiteOrderDataService());
 }
 
 <div class="text-center">
