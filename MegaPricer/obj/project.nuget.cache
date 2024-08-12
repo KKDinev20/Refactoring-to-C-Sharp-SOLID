@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Em1EHLev8xA=",
+  "dgSpecHash": "A88rcQTei6s=",
   "success": true,
   "projectFilePath": "C:\\Users\\KonstantinDinev\\source\\repos\\Refactoring-to-C-Sharp-SOLID\\MegaPricer\\MegaPricer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\KonstantinDinev\\.nuget\\packages\\ardalis.result\\7.2.0\\ardalis.result.7.2.0.nupkg.sha512",
     "C:\\Users\\KonstantinDinev\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\KonstantinDinev\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.12\\microsoft.aspnetcore.cryptography.internal.7.0.12.nupkg.sha512",
     "C:\\Users\\KonstantinDinev\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.12\\microsoft.aspnetcore.cryptography.keyderivation.7.0.12.nupkg.sha512",
@@ -41,7 +42,7 @@
     "C:\\Users\\KonstantinDinev\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\KonstantinDinev\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\KonstantinDinev\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\KonstantinDinev\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
+    "C:\\Users\\KonstantinDinev\\.nuget\\packages\\system.text.json\\7.0.3\\system.text.json.7.0.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -77,3 +77,4 @@ C:\Users\KonstantinDinev\source\repos\Refactoring-to-C-Sharp-SOLID\MegaPricer\ob
 C:\Users\KonstantinDinev\source\repos\Refactoring-to-C-Sharp-SOLID\MegaPricer\obj\Debug\net7.0\MegaPricer.pdb
 C:\Users\KonstantinDinev\source\repos\Refactoring-to-C-Sharp-SOLID\MegaPricer\obj\Debug\net7.0\MegaPricer.genruntimeconfig.cache
 C:\Users\KonstantinDinev\source\repos\Refactoring-to-C-Sharp-SOLID\MegaPricer\obj\Debug\net7.0\ref\MegaPricer.dll
+C:\Users\KonstantinDinev\source\repos\Refactoring-to-C-Sharp-SOLID\MegaPricer\bin\Debug\net7.0\Ardalis.Result.dll

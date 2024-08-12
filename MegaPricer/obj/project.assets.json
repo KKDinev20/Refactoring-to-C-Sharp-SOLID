@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "Ardalis.Result/7.2.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Json": "7.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Ardalis.Result.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Ardalis.Result.dll": {}
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -714,7 +726,7 @@
           }
         }
       },
-      "System.Text.Json/7.0.0": {
+      "System.Text.Json/7.0.3": {
         "type": "package",
         "dependencies": {
           "System.Text.Encodings.Web": "7.0.0"
@@ -736,6 +748,19 @@
     }
   },
   "libraries": {
+    "Ardalis.Result/7.2.0": {
+      "sha512": "PPTQqwtpxP6euBZ8pnGtvqZU8delTsIMTS0ENPeTJAdRf78Lp4h2mGeufZnVtIiUd+sXMb3VdcprSxOlHGLHbQ==",
+      "type": "package",
+      "path": "ardalis.result/7.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ardalis.result.7.2.0.nupkg.sha512",
+        "ardalis.result.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Ardalis.Result.dll"
+      ]
+    },
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -1666,10 +1691,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/7.0.0": {
-      "sha512": "DaGSsVqKsn/ia6RG8frjwmJonfos0srquhw09TlT8KRw5I43E+4gs+/bZj4K0vShJ5H9imCuXupb4RmS+dBy3w==",
+    "System.Text.Json/7.0.3": {
+      "sha512": "AyjhwXN1zTFeIibHimfJn6eAsZ7rTBib79JQpzg8WAuR/HKDu9JGNHTuu3nbbXQ/bgI+U4z6HtZmCHNXB1QXrQ==",
       "type": "package",
-      "path": "system.text.json/7.0.0",
+      "path": "system.text.json/7.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1732,7 +1757,7 @@
         "lib/net7.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.7.0.0.nupkg.sha512",
+        "system.text.json.7.0.3.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -1740,6 +1765,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Ardalis.Result >= 7.2.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 7.0.12",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.12",
       "Microsoft.AspNetCore.Identity.UI >= 7.0.12",
@@ -1796,6 +1822,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "Ardalis.Result": {
+            "target": "Package",
+            "version": "[7.2.0, )"
+          },
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
             "target": "Package",
             "version": "[7.0.12, )"
