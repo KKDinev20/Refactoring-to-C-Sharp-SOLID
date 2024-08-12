@@ -1,25 +1,22 @@
 ﻿using System.Data;
 using Ardalis.Result;
 using MegaPricer.Data;
+using MegaPricer.Data.Migrations;
 using Microsoft.Data.Sqlite;
 
 namespace MegaPricer.Services;
 
-public interface IPricingService
-{
-  Result<PriceGroup> CalculatePrice(PriceRequest priceRequest);
-}
-
 public class PricingService : IPricingService
 {
-  private readonly IOrderDataService _orderDataService;
+  private readonly IGetUserMarkup _getUserMarkupService;
 
-  public PricingService(IOrderDataService orderDataService)
+  public PricingService(IGetUserMarkup getUserMarkupService)
   {
-    _orderDataService = orderDataService;
+    _getUserMarkupService = getUserMarkupService;
   }
 
-  public Result<PriceGroup> CalculatePrice(PriceRequest priceRequest)
+  public Result<PriceGroup> CalculatePrice(PriceRequest priceRequest,
+    IPriceCalculationStrategy priceCalculationStrategy)
   {
     if (Context.Session[priceRequest.userName]["PricingOff"] == "Y") return new PriceGroup(0, 0, 0);
 
@@ -63,23 +60,7 @@ public class PricingService : IPricingService
       {
         return Result.Invalid(new ValidationError("invalid WallOrderNum"));
       }
-
-      if (priceRequest.refType == "PriceReport")
-      {
-        // Start writing to the report file
-        string baseDirectory = AppContext.BaseDirectory;
-        string path = baseDirectory + "Orders.csv";
-        sr = new StreamWriter(path);
-        sr.WriteLine($"{kitchen.Name} ({kitchen.KitchenId}) - Run time: {DateTime.Now.ToLongTimeString()} ");
-        sr.WriteLine("");
-        sr.WriteLine("Part Name,Part SKU,Height,Width,Depth,Color,Sq Ft $, Lin Ft $,Per Piece $,# Needed,Part Price,Add On %,Total Part Price");
-      }
-      else if (priceRequest.refType == "Order")
-      {
-        // create a new order
-        order.KitchenId = priceRequest.kitchenId;
-        _orderDataService.CreateNewOrder(order);
-      }
+      priceCalculationStrategy.Create(kitchen);
 
       defaultColor = Convert.ToInt32(dt.Rows[0]["CabinetColor"]);// dt.Rows[0].Field<int>("CabinetColor");
       wallId = Convert.ToInt32(dt.Rows[0]["WallId"]);
@@ -109,24 +90,10 @@ public class PricingService : IPricingService
           subtotal.Value += thisPart.MarkedUpCost;
           subtotal.Flat += thisPart.Cost;
 
-          thisUserMarkup = GetUserMarkup(priceRequest, thisUserMarkup);
+          thisUserMarkup = _getUserMarkupService.GetUserMarkup(priceRequest.userName);
           subtotal.Plus += thisPart.MarkedUpCost * (1 + thisUserMarkup / 100);
         }
-
-        if (priceRequest.refType == "Order")
-        {
-          // add this part to the order
-          _orderDataService.InsertOrderItemRecord(order, thisPart, thisUserMarkup, thisPart.MarkedUpCost);
-        }
-        else if (priceRequest.refType == "PriceReport")
-        {
-          // write out required part(s) to the report file
-          sr.WriteLine($"{thisPart.SKU},{thisPart.Height},{thisPart.Width},{thisPart.Depth},{thisPart.ColorName},{thisPart.ColorPerSquareFootCost},{thisPart.LinearFootCost},{thisPart.Cost},{thisPart.Quantity},{thisPart.Cost * thisPart.Quantity},{thisPart.ColorMarkup},{GlobalHelpers.Format(thisPart.MarkedUpCost)}");
-        }
-        else
-        {
-          // Just get the cost
-        }
+        priceCalculationStrategy.AddPart(thisPart, thisUserMarkup);
 
         dt3 = LoadFeatures(cabinetId);
         foreach (DataRow featureRow in dt3.Rows)
@@ -148,16 +115,7 @@ public class PricingService : IPricingService
             subtotal.Flat += thisFeature.FlatCost;
             subtotal.Plus += thisFeature.UserMarkedUpCost;
 
-            if (priceRequest.refType == "Order")
-            {
-              _orderDataService.AddOrderItem(order, thisUserMarkup, thisFeature);
-
-            }
-            else if (priceRequest.refType == "PriceReport")
-            {
-              // write out required part(s) to the report file
-              sr.WriteLine($"{thisFeature.SKU},{thisFeature.Height},{thisFeature.Width},{thisFeature.ColorName},{thisFeature.ColorPerSquareFootCost},{thisFeature.LinearFootCost},{thisFeature.WholesalePrice},{thisFeature.Quantity},{thisFeature.WholesalePrice * thisFeature.Quantity},{thisFeature.ColorMarkup},{GlobalHelpers.Format(thisFeature.MarkedUpCost)}");
-            }
+            priceCalculationStrategy.AddFeature(thisFeature, thisUserMarkup);
           }
         }
       }
@@ -174,14 +132,7 @@ public class PricingService : IPricingService
           subtotal.Flat += thisPart.Cost;
           subtotal.Plus += thisPart.MarkedUpCost * (1 + thisUserMarkup / 100);
 
-          if (priceRequest.refType == "Order")
-          {
-          }
-          else if (priceRequest.refType == "PriceReport")
-          {
-            // write out required part(s) to the report file
-            sr.WriteLine($"{thisPart.SKU},{remainingWallHeight},{width},{thisPart.ColorName},{thisPart.ColorPerSquareFootCost} , {thisPart.LinearFootCost},{thisPart.Cost},{thisPart.Quantity},{thisPart.Cost * thisPart.Quantity},{thisPart.ColorMarkup},{GlobalHelpers.Format(thisPart.MarkedUpCost)}");
-          }
+          priceCalculationStrategy.AddWallTreatment(thisPart, thisUserMarkup, remainingWallHeight, width);
         }
       }
 
@@ -289,26 +240,6 @@ public class PricingService : IPricingService
     return dt3;
   }
 
-  private static decimal GetUserMarkup(PriceRequest priceRequest, decimal thisUserMarkup)
-  {
-    using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
-    {
-      var cmd = conn.CreateCommand();
-      cmd.CommandText = "SELECT * FROM UserMarkups WHERE UserName = @userName";
-      cmd.Parameters.AddWithValue("@userName", priceRequest.userName);
-      conn.Open();
-      using (SqliteDataReader dr = cmd.ExecuteReader())
-      {
-        if (dr.HasRows && dr.Read())
-        {
-          thisUserMarkup = dr.GetDecimal("MarkupPercent");
-        }
-      }
-    }
-
-    return thisUserMarkup;
-  }
-
   private static Part GetCostForColorChoice(Part thisPart)
   {
     using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
@@ -371,6 +302,7 @@ public class PricingService : IPricingService
       }
     }
   }
+
   private static DataTable PopulateWallsDataTable(PriceRequest priceRequest)
   {
     DataTable dt;
@@ -395,86 +327,5 @@ public class PricingService : IPricingService
     }
 
     return dt;
-  }
-}
-
-public interface IOrderDataService
-{
-  void CreateNewOrder(Order order);
-  void InsertOrderItemRecord(Order order, Part thisPart, decimal thisUserMarkup, decimal thisTotalPartCost);
-  void AddOrderItem(Order order, decimal thisUserMarkup, Feature thisFeature);
-  void AddWallTreatmentToOrder(Order order, Part thisPart, decimal thisUserMarkup);
-}
-
-
-public class SQLiteOrderDataService : IOrderDataService
-{
-  public void AddOrderItem(Order order, decimal thisUserMarkup, Feature thisFeature)
-  {
-    using (var conn2 = new SqliteConnection(ConfigurationSettings.ConnectionString))
-    {
-      var cmd = conn2.CreateCommand();
-      cmd.CommandText = "INSERT INTO ORDERITEM (OrderId,SKU,Quantity,BasePrice,Markup,UserMarkup) VALUES (@orderId,@sku,@quantity,@basePrice,@markup,@userMarkup)";
-      cmd.Parameters.AddWithValue("@orderId", order.OrderId);
-      cmd.Parameters.AddWithValue("@sku", thisFeature.SKU);
-      cmd.Parameters.AddWithValue("@quantity", thisFeature.Quantity == 0 ? 1 : thisFeature.Quantity);
-      cmd.Parameters.AddWithValue("@basePrice", GlobalHelpers.Format(thisFeature.FlatCost));
-      cmd.Parameters.AddWithValue("@markup", GlobalHelpers.Format(thisFeature.MarkedUpCost - thisFeature.FlatCost));
-      cmd.Parameters.AddWithValue("@userMarkup", GlobalHelpers.Format(thisFeature.MarkedUpCost * (1 + thisUserMarkup / 100) - thisFeature.MarkedUpCost));
-      conn2.Open();
-      cmd.ExecuteNonQuery();
-    }
-  }
-  public void AddWallTreatmentToOrder(Order order, Part thisPart, decimal thisUserMarkup)
-  {
-    using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
-    {
-      var cmd = conn.CreateCommand();
-      cmd.CommandText = "INSERT INTO ORDERITEM (OrderId,SKU,Quantity,BasePrice,Markup,UserMarkup) VALUES (@orderId,@sku,@quantity,@basePrice,@markup,@userMarkup)";
-      cmd.Parameters.AddWithValue("@orderId", order.OrderId);
-      cmd.Parameters.AddWithValue("@sku", thisPart.SKU);
-      cmd.Parameters.AddWithValue("@quantity", thisPart.Quantity == 0 ? 1 : thisPart.Quantity);
-      cmd.Parameters.AddWithValue("@basePrice", GlobalHelpers.Format(thisPart.Cost));
-      cmd.Parameters.AddWithValue("@markup", GlobalHelpers.Format(thisPart.MarkedUpCost - thisPart.Cost));
-      cmd.Parameters.AddWithValue("@userMarkup", GlobalHelpers.Format(thisPart.MarkedUpCost * (1 + thisUserMarkup / 100) - thisPart.MarkedUpCost));
-      conn.Open();
-      cmd.ExecuteNonQuery();
-    }
-  }
-
-  public void CreateNewOrder(Order order)
-  {
-    using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
-    {
-      var cmd = conn.CreateCommand();
-      cmd.CommandText = "INSERT INTO ORDERS (KitchenId,OrderDate,OrderStatus,OrderType) VALUES (@kitchenId,@orderDate,@orderStatus,@orderType)";
-      cmd.Parameters.AddWithValue("@kitchenId", order.KitchenId);
-      cmd.Parameters.AddWithValue("@orderDate", order.OrderDate);
-      cmd.Parameters.AddWithValue("@orderStatus", order.OrderStatus);
-      cmd.Parameters.AddWithValue("@orderType", order.OrderType);
-      conn.Open();
-      cmd.ExecuteNonQuery();
-      var cmd2 = conn.CreateCommand();
-      cmd2.CommandText = "SELECT last_insert_rowid();";
-      order.OrderId = Convert.ToInt32(cmd2.ExecuteScalar());
-    }
-  }
-
-
-  public void InsertOrderItemRecord(Order order, Part thisPart, decimal thisUserMarkup, decimal thisTotalPartCost)
-  {
-    using (var conn = new SqliteConnection(ConfigurationSettings.ConnectionString))
-    {
-      var cmd = conn.CreateCommand();
-      cmd.CommandText = "INSERT INTO ORDERITEM (OrderId,SKU,Quantity,BasePrice,Markup,UserMarkup) VALUES (@orderId,@sku,@quantity,@basePrice,@markup,@userMarkup)";
-      cmd.Parameters.AddWithValue("@orderId", order.OrderId);
-      cmd.Parameters.AddWithValue("@sku", thisPart.SKU);
-      cmd.Parameters.AddWithValue("@quantity", thisPart.Quantity == 0 ? 1 : thisPart.Quantity);
-      cmd.Parameters.AddWithValue("@basePrice", GlobalHelpers.Format(thisPart.Cost));
-      cmd.Parameters.AddWithValue("@markup", GlobalHelpers.Format(thisTotalPartCost - thisPart.Cost));
-      cmd.Parameters.AddWithValue("@userMarkup", GlobalHelpers.Format(thisTotalPartCost * (1 + thisUserMarkup / 100) - thisTotalPartCost));
-      conn.Open();
-      cmd.ExecuteNonQuery();
-    }
   }
 }

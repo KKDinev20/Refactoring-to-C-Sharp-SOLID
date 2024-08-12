@@ -8,11 +8,15 @@ public class GenerateFileModel : PageModel
 {
   private readonly ILogger<GenerateFileModel> _logger;
   private readonly IPricingService _pricingService;
+  private readonly PriceReportCalculationStrategy _priceCalculationStrategy;
 
-  public GenerateFileModel(ILogger<GenerateFileModel> logger, IPricingService pricingService)
+  public GenerateFileModel(ILogger<GenerateFileModel> logger,
+    IPricingService pricingService,
+    PriceReportCalculationStrategy priceReportCalculationStrategy)
   {
     _logger = logger;
     _pricingService = pricingService;
+    _priceCalculationStrategy = priceReportCalculationStrategy;
   }
 
   public void OnGet()
@@ -38,9 +42,8 @@ public class GenerateFileModel : PageModel
     {
       kitchenId = 1,
       wallOrderNum = 1,
-      userName = userName,
-      refType = "PriceReport"
+      userName = userName
     };
-    _pricingService.CalculatePrice(priceRequest);
+    _pricingService.CalculatePrice(priceRequest, _priceCalculationStrategy);
   }
 }
