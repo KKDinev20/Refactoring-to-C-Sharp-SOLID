@@ -1,0 +1,59 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MegaPricer
+build_property.RootNamespace = MegaPricer
+build_property.ProjectDir = C:\Users\KonstantinDinev\source\repos\Refactoring-to-C-Sharp-SOLID\MegaPricer\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\KonstantinDinev\source\repos\Refactoring-to-C-Sharp-SOLID\MegaPricer
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/KonstantinDinev/source/repos/Refactoring-to-C-Sharp-SOLID/MegaPricer/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KonstantinDinev/source/repos/Refactoring-to-C-Sharp-SOLID/MegaPricer/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KonstantinDinev/source/repos/Refactoring-to-C-Sharp-SOLID/MegaPricer/Pages/GenerateFile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VuZXJhdGVGaWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KonstantinDinev/source/repos/Refactoring-to-C-Sharp-SOLID/MegaPricer/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KonstantinDinev/source/repos/Refactoring-to-C-Sharp-SOLID/MegaPricer/Pages/PlaceOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxhY2VPcmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KonstantinDinev/source/repos/Refactoring-to-C-Sharp-SOLID/MegaPricer/Pages/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KonstantinDinev/source/repos/Refactoring-to-C-Sharp-SOLID/MegaPricer/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KonstantinDinev/source/repos/Refactoring-to-C-Sharp-SOLID/MegaPricer/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KonstantinDinev/source/repos/Refactoring-to-C-Sharp-SOLID/MegaPricer/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KonstantinDinev/source/repos/Refactoring-to-C-Sharp-SOLID/MegaPricer/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-qvrgg0awau
